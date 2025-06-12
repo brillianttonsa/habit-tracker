@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import axios from 'axios';
+import { useAuth } from '../auth/AuthContext';
 
 
 function Login() {
@@ -12,15 +13,46 @@ function Login() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const {login} = useAuth();
 
     const handleChange = e => {
         setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
     };
 
-    const handleSubmit = e => {
-        e.preventDefault(); 
-        console.log('Login Data:', form);
-        navigate('/dashboard'); // Simulated success
+    const validateEmail = email =>
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    const handleSubmit =async e => {
+        e.preventDefault();
+        setLoading(true);
+
+        if (!validateEmail(form.email)) {
+        return setError('Invalid email address');
+        }
+        if (form.password.length < 6) {
+        return setError('Password must be at least 6 characters long');
+
+        if (error) setError("")
+        }
+
+        try {
+            const API = import.meta.env.VITE_API_URL;
+            const response = await axios.post(`${API}/auth/login`, form); 
+
+            if (response.status === 201) {
+                const { token, user } = response.data;
+                // Store in context
+                login(user, token);
+                // Navigate to dashboard
+                navigate("/dashboard");
+              }
+        } catch (error) {
+            console.error('Signup error:', error.message);
+            setError('An error occurred during login. Please try again.');
+        }finally{
+            setLoading(false);
+        }
+
     };
 
     return (

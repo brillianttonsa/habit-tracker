@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import axios from 'axios';
+import {useAuth} from '../auth/AuthContext';
 
 function Signup() {
     const [form, setForm] = useState({
@@ -12,9 +13,12 @@ function Signup() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const { login } = useAuth()
 
     const handleChange = e => {
         setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+        // Clear error when user starts typing
+        if (error) setError("")
     };
 
     const validateEmail = email =>
@@ -23,16 +27,21 @@ function Signup() {
     const handleSubmit =async e => {
         e.preventDefault();
         setLoading(true);
+        setError('');
 
         if (!validateEmail(form.email)) {
-        return setError('Invalid email address');
+            setLoading(false);
+            return setError('Invalid email address');
         }
         if (form.password !== form.confirmPassword) {
-        return setError("Passwords don't match");
+            setLoading(false);
+            return setError("Passwords don't match");
         }
         if (form.password.length < 6) {
-        return setError('Password must be at least 6 characters long');
+            setLoading(false);
+            return setError('Password must be at least 6 characters long');
         }
+        
 
         try {
             const API = import.meta.env.VITE_API_URL;
@@ -41,17 +50,20 @@ function Signup() {
                 password: form.password,
             }); 
 
-            if(response.status === 201){ // Assuming 201 is the success status code
-                console.log('Signup successful:', response.data);
+            if (response.status === 201) {
+                const { token, user } = response.data;
+                // Store in context
+                login(user, token);
+                // Navigate to dashboard
+                navigate("/dashboard");
+              }
         } catch (error) {
-            console.error('Error during signup:', error);
-            return setError('An error occurred during signup. Please try again.');
+            console.error('Signup error:', error.message);
+            setError('An error occurred during signup. Please try again.');
         }finally{
             setLoading(false);
-            setError('');
         }
 
-        navigate('/dashboard'); // Simulated redirect
     };
 
     return (
