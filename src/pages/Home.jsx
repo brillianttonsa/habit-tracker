@@ -1,16 +1,17 @@
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import FeatureCard from '../components/features/FeatureCard';
+import { habitTrackerFeaturesCore, habitTrackerFeaturesAdvanced } from '../components/features/Features';
+import Footer from '../components/Footer';
 
 function Home() {
     return (
         <div className="min-h-screen ">
             <Navbar />
             
-            {/* Main Hero Section */}
             <section className="bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300 text-gray-800 px-6 py-6">
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-10">
                     
-                    {/* Text Content */}
                     <div className="w-full sm:w-1/2 space-y-6">
                         <h1 className="text-5xl sm:text-6xl font-extrabold leading-tight tracking-tight text-blue-900">
                             Habit Flow Tracer
@@ -38,7 +39,36 @@ function Home() {
                     </div>
                 </div>
             </section>
-            <p>Hellow</p>
+                
+            <section className="p-6 text-gray-800">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {habitTrackerFeaturesCore.map((feature, index) => 
+                            <FeatureCard
+                                key={index}
+                                title={feature.title}
+                                icon={feature.icon}
+                                description={feature.description}
+                            />
+                        )
+                    }
+                </div>
+            </section>
+            <section className='p-6 bg-gray-100 text-gray-800'>
+                <h2 className='text-green-400 text-sm'>Coming features...</h2>
+
+                <div className="mt-2 grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    {habitTrackerFeaturesAdvanced.map((feature, index) => 
+                        <FeatureCard
+                            key={index}
+                            title={feature.title}
+                            icon={feature.icon}
+                            description={feature.description}
+                            />
+                    )}
+                </div>
+            </section>
+
+            <Footer/>
         </div>
     );
 }
