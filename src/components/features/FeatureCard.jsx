@@ -5,7 +5,7 @@ function FeatureCard({ title, icon, description }) {
   // console.log(LucideIcon);
 
   return (
-    <div className="p-4 bg-white border rounded-lg shadow hover:shadow-lg transition-all duration-200  space-y-2">
+    <div className="p-4 bg-white border rounded-lg shadow-lg hover:shadow-xl transition-all duration-200  space-y-2">
       <LucideIcon className="w-6 h-6 text-green-500" />
       <h3 className="font-bold">{title}</h3>
       <p className="text-sm text-gray-800">{description}</p>

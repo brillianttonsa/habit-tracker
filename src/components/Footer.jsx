@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 function Footer(){
     return(
-        <footer className="bg-blue-900 text-white px-6 py-8 mt-12">
+        <footer className="bg-blue-900 text-white px-6 py-8 ">
             <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 text-sm">
                 <div>
                     <h3 className="text-lg font-bold mb-2 text-green-400">HabitFlow</h3>

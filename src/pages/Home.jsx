@@ -39,8 +39,8 @@ function Home() {
                     </div>
                 </div>
             </section>
-                
-            <section className="p-6 text-gray-800">
+                {/* features section */}
+            <section className="p-6 text-gray-800 bg-yellow-50">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {habitTrackerFeaturesCore.map((feature, index) => 
                             <FeatureCard
@@ -53,7 +53,7 @@ function Home() {
                     }
                 </div>
             </section>
-            <section className='p-6 bg-gray-100 text-gray-800'>
+            <section className='p-6 bg-gray-100 text-gray-800 bg-yellow-50'>
                 <h2 className='text-green-400 text-sm'>Coming features...</h2>
 
                 <div className="mt-2 grid grid-cols-1 sm:grid-cols-3 gap-6">
