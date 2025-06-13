@@ -1,6 +1,7 @@
 import { useState } from "react"
 import axios from 'axios';
 import Navbar from '../components/Navbar';
+import { Link } from "react-router-dom";
 
 function ForgetPassword(){
     const [email, setEmail] = useState('');
@@ -80,7 +81,7 @@ function ForgetPassword(){
                 </form>
 
                 <p className="mt-4 text-sm text-center text-gray-600">
-                    Remember your password? <a href="/login" className="text-blue-500 hover:underline">Login</a>
+                    Remember your password? <Link to="/login" className="text-blue-500 hover:underline">Login</Link>
                 </p>
                 </div>
             </div>
