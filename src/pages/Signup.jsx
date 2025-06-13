@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import axios from 'axios';
 import {useAuth} from '../auth/AuthContext';
@@ -126,10 +126,10 @@ function Signup() {
                     </form>
 
                     <p className="mt-4 text-sm text-center text-gray-600">
-                    Already have an account? <a href="/login" className="text-blue-500 hover:underline">Login here</a>
+                    Already have an account? <Link to='/login' className="text-blue-500 hover:underline">Login here</Link>
                     </p>
                     <p className="mt-4 text-sm text-center text-gray-600">
-                    Forget Password? <a href="/forget-password" className="text-blue-500 hover:underline">Forget Password?</a>
+                    Forget Password? <Link to="/forget-password" className="text-blue-500 hover:underline">Forget Password?</Link>
                     </p>
                 </div>
             </div>

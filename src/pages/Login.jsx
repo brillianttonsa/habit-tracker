@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import axios from 'axios';
 import { useAuth } from '../auth/AuthContext';
@@ -103,10 +103,10 @@ function Login() {
                     </form>
 
                     <p className="mt-4 text-sm text-center text-gray-600">
-                    Don’t have an account? <a href="/signup" className="text-blue-500 hover:underline">Sign up</a>
+                    Don’t have an account? <Link to="/signup" className="text-blue-500 hover:underline">Sign up</Link>
                     </p>
                     <p className="mt-4 text-sm text-center text-gray-600">
-                    Forget Password? <a href="/forget-password" className="text-blue-500 hover:underline">Forget Password?</a>
+                    Forget Password? <Link to="/forget-password" className="text-blue-500 hover:underline">Forget Password?</Link>
                     </p>
                 </div>
             </div>
