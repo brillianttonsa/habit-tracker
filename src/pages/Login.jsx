@@ -105,6 +105,9 @@ function Login() {
                     <p className="mt-4 text-sm text-center text-gray-600">
                     Don’t have an account? <a href="/signup" className="text-blue-500 hover:underline">Sign up</a>
                     </p>
+                    <p className="mt-4 text-sm text-center text-gray-600">
+                    Forget Password? <a href="/forget-password" className="text-blue-500 hover:underline">Forget Password?</a>
+                    </p>
                 </div>
             </div>
         </>

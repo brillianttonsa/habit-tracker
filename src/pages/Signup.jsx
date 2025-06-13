@@ -128,6 +128,9 @@ function Signup() {
                     <p className="mt-4 text-sm text-center text-gray-600">
                     Already have an account? <a href="/login" className="text-blue-500 hover:underline">Login here</a>
                     </p>
+                    <p className="mt-4 text-sm text-center text-gray-600">
+                    Forget Password? <a href="/forget-password" className="text-blue-500 hover:underline">Forget Password?</a>
+                    </p>
                 </div>
             </div>
         </>
